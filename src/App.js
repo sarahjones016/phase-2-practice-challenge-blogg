@@ -8,6 +8,8 @@ import {useState, useEffect} from "react";
 function App() {
 
 const [blogs, setBlogs] = useState([])
+const [showForm, setShowFrom] = useState("")
+const [search, setSearch] = useState("")
 
 useEffect(() => {
   fetch("http://localhost:3000/blogs")
@@ -15,15 +17,30 @@ useEffect(() => {
   .then((data) => setBlogs(data))
 }, [])
 
+function handleForm() {
+  setShowFrom(!showForm)
+}
+
+function handleSubmit(newBlog) {
+  setBlogs([...blogs, newBlog])
+}
+
+function handleSearch(newSearch) {
+  setSearch(newSearch)
+}
+
+const filteredBlogs = blogs.filter((blog) => {
+  return blog.title.toLowerCase().includes(search.toLowerCase()) || blog.author.toLowerCase().includes(search.toLowerCase())
+})
+
   return (
     <div className="App">
-      <Header/>
+      <Header onSearch={handleSearch} search={search}/>
 
-      <button className="show-form">Show Form</button>
-      {/* Condionally hide/unhide form on button click */}
-      <NewPostForm/>
+      <button onClick={handleForm} className="show-form">{showForm ? "Hide Form" : "Show Form"}</button>
+      {showForm ? <NewPostForm onFormSubmit={handleSubmit}/> : null}
 
-      <BlogPostContainer blogs={blogs}/>
+      <BlogPostContainer search={search} blogs={filteredBlogs}/>
     </div>
   );
 }
