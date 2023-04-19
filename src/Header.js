@@ -1,6 +1,8 @@
 import React from "react";
 
-function Header() {
+function Header({onSearch, searchValue}) {
+
+
   return (
     <div>
       <header className="logo">
@@ -19,6 +21,8 @@ function Header() {
           }}
           placeholder="Search an article or the author"
           type="text"
+          value={searchValue}
+          onChange={(e) => onSearch(e.target.value)}
         ></input>
       </header>
     </div>

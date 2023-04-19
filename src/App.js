@@ -9,6 +9,7 @@ function App() {
 
 const [blogs, setBlogs] = useState([])
 const [form, setForm] = useState(false)
+const [searchValue, setSearchValue] = useState("")
 
 useEffect(() => {
   fetch("http://localhost:3000/blogs")
@@ -24,14 +25,18 @@ function handleSubmit(newSubmission) {
   setBlogs([...blogs, newSubmission])
 }
 
+function handleSearch(newSearch) {
+  setSearchValue(newSearch)
+}
+
   return (
     <div className="App">
-      <Header />
+      <Header onSearch={handleSearch} searchValue={searchValue}/>
 
       <button onClick={handleClick} className="show-form">Show Form</button>
       {form ? <NewPostForm onSubmit={handleSubmit} /> : null}
 
-      <BlogPostContainer blogs={blogs}/>
+      <BlogPostContainer searchValue={searchValue} blogs={blogs}/>
     </div>
   );
 }
