@@ -1,19 +1,37 @@
-import logo from "./logo.svg";
+// import logo from "./logo.svg";
 import "./App.css";
 import BlogPostContainer from "./BlogPostContainer";
 import NewPostForm from "./NewPostForm";
 import Header from "./Header";
+import React, {useState, useEffect} from "react";
 
 function App() {
+
+const [blogs, setBlogs] = useState([])
+const [form, setForm] = useState(false)
+
+useEffect(() => {
+  fetch("http://localhost:3000/blogs")
+  .then((res) => res.json())
+  .then((data) => setBlogs(data))
+}, [])
+
+function handleClick() {
+  setForm(!form)
+}
+
+function handleSubmit(newSubmission) {
+  setBlogs([...blogs, newSubmission])
+}
+
   return (
     <div className="App">
-      <Header></Header>
+      <Header />
 
-      <button className="show-form">Show Form</button>
-      {/* Condionally hide/unhide form on button click */}
-      <NewPostForm></NewPostForm>
+      <button onClick={handleClick} className="show-form">Show Form</button>
+      {form ? <NewPostForm onSubmit={handleSubmit} /> : null}
 
-      <BlogPostContainer></BlogPostContainer>
+      <BlogPostContainer blogs={blogs}/>
     </div>
   );
 }
