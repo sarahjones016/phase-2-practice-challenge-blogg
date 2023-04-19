@@ -3,6 +3,7 @@ import React, {useState} from "react";
 function BlogPost({ blog }) {
 
   const [isRead, setIsRead] = useState(true)
+  const [data, setData] = useState(blog)
 
   function handleClick() {
 
@@ -11,14 +12,15 @@ function BlogPost({ blog }) {
     fetch(`http://localhost:3000/blogs/${blog.id}`, {
       method: "PATCH",
       headers: {
-        "Content-Type": "application.json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        isRead: isRead,
-      })
+      body: JSON.stringify({isRead}),
     })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      console.log(data)
+      setData(data)
+    })
   }
 
   return (
@@ -26,7 +28,7 @@ function BlogPost({ blog }) {
       <div className="post-header">
         <div className="head">
           <h3>{blog.title}</h3>
-          <button onClick={handleClick} className="read-button">{isRead ? "Read" : "Unread"}</button>
+          <button onClick={handleClick} className="read-button">{data.isRead ? "Unread" : "Read"}</button>
         </div>
         <p>Author {blog.author}</p>
       </div>
