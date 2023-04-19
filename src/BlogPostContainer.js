@@ -1,14 +1,10 @@
 import React from "react";
 import BlogPost from "./BlogPost";
 
-function BlogPostContainer({blogs, searchValue}) {
+function BlogPostContainer({blogs}) {
 
-  const filteredArrayOfBlogs = blogs.filter((blog) => {
-    return blog.title.toLowerCase().includes(searchValue.toLowerCase()) || blog.author.toLowerCase().includes(searchValue.toLowerCase())
-  })
-
-  const arrayOfBlogs = filteredArrayOfBlogs.map((blog) => {
-    return <BlogPost blog={blog} key={blog.title} />
+  const arrayOfBlogs = blogs.map((blog) => {
+    return <BlogPost blog={blog} key={blog.title}/>
   })
 
   return (
