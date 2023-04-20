@@ -50,16 +50,16 @@
       "isRead": false
     },
     {
-      "title": "How to Write a Blog Post: A Step-by-Step Guide",
-      "author": "Rachel Leist",
-      "article": "If you've ever read a blog post, you've consumed content from a thought leader that is an expert in their industry. Chances are if the blog post was written effectively, you came away with helpful knowledge and a positive opinion about the writer or brand that produced the content.",
+      "title": "Dummy Post",
+      "author": "Sarah Jones",
+      "article": "This is a dummy post.",
       "isRead": false,
       "id": 8
     },
     {
-      "title": "Dummy Post",
-      "author": "Sarah Jones",
-      "article": "This is a dummy post",
+      "title": "Last Post",
+      "author": "SJ",
+      "article": "Last dummy post.",
       "isRead": false,
       "id": 9
     }

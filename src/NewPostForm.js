@@ -24,23 +24,23 @@ function NewPostForm({onFormSubmit}) {
     <div className="form">
       <form onSubmit={handleSubmit}>
         <input 
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
           type="text" 
           placeholder="Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
         ></input>
         <input 
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
           type="text" 
           placeholder="Author"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
         ></input>
         <textarea 
-          value={article}
-          onChange={(e) => setArticle(e.target.value)}
           rows="10" 
           cols="60" 
           placeholder="Write your post"
+          value={article}
+          onChange={(e) => setArticle(e.target.value)}
         ></textarea>
         <input
           className="submit-button"

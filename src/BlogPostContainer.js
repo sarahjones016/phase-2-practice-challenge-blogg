@@ -1,10 +1,10 @@
 import React from "react";
 import BlogPost from "./BlogPost";
 
-function BlogPostContainer({blogs}) {
+function BlogPostContainer({blogs, onBlogDelete}) {
 
   const arrayOfBlogs = blogs.map((blog) => {
-    return <BlogPost blog={blog} key={blog.title}/>
+    return <BlogPost onBlogDelete={onBlogDelete} blog={blog} key={blog.title}/>
   })
 
   return (

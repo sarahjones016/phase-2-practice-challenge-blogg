@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header({onSearch, search}) {
+function Header({search, onSearch}) {
   return (
     <div>
       <header className="logo">
